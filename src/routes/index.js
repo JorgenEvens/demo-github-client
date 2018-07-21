@@ -2,12 +2,12 @@
 import Users from './users';
 
 // Components
-import HelloWorld from '@/components/HelloWorld';
+import Home from '@/pages/home';
 
 const Root = {
     path: '/',
     name: 'home',
-    component: HelloWorld
+    component: Home
 };
 
 export default [

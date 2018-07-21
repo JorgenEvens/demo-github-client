@@ -5,7 +5,7 @@ const RootNode = {
     }
 };
 
-export default
+export
 function wrapNode(path, children) {
     const route = children.filter(r => {
         if (!r.name)
@@ -32,3 +32,4 @@ function wrapNode(path, children) {
         }))
     };
 }
+

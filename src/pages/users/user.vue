@@ -15,7 +15,7 @@ export default {
         loading() {
             return isLoading(this.user);
         },
-        user: getResource('$route.params.id', { namespace: 'users' })
+        user: getResource('$route.params.userId', { namespace: 'users' })
     }
 }
 </script>

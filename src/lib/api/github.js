@@ -22,6 +22,10 @@ class GitHub extends Api {
         return this.get(`/users/${username}`);
     }
 
+    getUserProjects(username, query = {}) {
+        return this.get(`/users/${username}/repos`, query);
+    }
+
 }
 
 export const github = new GitHub();

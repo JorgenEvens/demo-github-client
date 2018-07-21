@@ -23,7 +23,7 @@ function addQuery(url, query) {
     if (query)
         query = '?' + query;
 
-    return [ path, originalQuery, fragment ].filter(v => !!v).join('');
+    return [ path, query, fragment ].filter(v => !!v).join('');
 }
 
 export
