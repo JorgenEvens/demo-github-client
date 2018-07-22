@@ -4,7 +4,7 @@ import Users from '@/pages/users';
 import User from '@/pages/users/user';
 import Projects from '@/pages/users/projects';
 
-export default wrapNode('/users', [
+export default wrapNode('users', [
     {
         name: 'users',
         component: Users

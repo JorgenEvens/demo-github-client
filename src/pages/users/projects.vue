@@ -2,7 +2,11 @@
     <div>
         <h1>{{ $route.params.userId }} - Projects</h1>
         <ul v-for="project in projects" :key="project && project.full_name">
-            <li v-if="!!project">{{ project.full_name }}</li>
+            <li v-if="!!project">
+                <router-link :to="{ name: 'project', params: { projectId: project.full_name } }">
+                    {{ project.full_name }}
+                </router-link>
+            </li>
         </ul>
         <strong v-if="loading">Loading</strong>
         <button @click="previous">Previous</button>

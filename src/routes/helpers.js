@@ -1,4 +1,4 @@
-const RootNode = {
+export const RootNode = {
     name: 'root-node',
     render(createElement) {
         return createElement('router-view');
