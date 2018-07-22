@@ -12,10 +12,25 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
+    text-align: center;
+}
+ul {
+    list-style: none;
+}
+li {
+    margin-bottom: 0.4em;
+}
+nav li {
+    display: inline-block;
+    padding-right: 1em;
+}
+pre {
+    text-align: left;
+}
+span.tag {
+    background: green;
+    border-radius: 20px;
+    padding: 3px 15px;
+    color: white;
 }
 </style>

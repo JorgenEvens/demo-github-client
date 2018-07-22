@@ -1,5 +1,4 @@
-import loading from '@jorgenevens/rest-store/lib/resource/loading';
-import { add, addPage } from '@jorgenevens/rest-store';
+import { add, addPage, loading } from '@jorgenevens/rest-store';
 import { apply } from '@/store/helpers';
 
 export default {

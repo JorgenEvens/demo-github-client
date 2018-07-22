@@ -15,8 +15,8 @@
                 <li>Following: {{ user.following }}</li>
             </ul>
             <hr />
-            <ul v-for="project in projects" :key="project.full_name">
-                <li>
+            <ul>
+                <li v-for="project in projects" :key="project.full_name">
                     <router-link :to="projectUrl(project)">
                         {{ project.full_name }}
                     </router-link>

@@ -3,26 +3,27 @@ import { GitHub } from '@/lib/api/github';
 
 export default throttleAll({
     fetch({ rootState, commit }, opts) {
-        commit('loadingProject', { id: opts.id });
+        commit('loadingIssue', { id: opts.id });
 
         GitHub.fromState(rootState)
-            .getProject(opts.id)
-            .then(project => commit('addProject', { project }))
+            .getIssue(opts.id)
+            .then(issue => commit('addIssue', { issue }))
             .catch(err => console.error(err)); // eslint-disable-line
     },
     fetchPage({ rootState, commit }, opts) {
-        commit('loadingUserProjects', opts);
+        commit('loadingProjectIssues', opts);
 
-        const { page, listName } = opts;
+        const { page, listName, type } = opts;
 
         const query = {
             page,
             per_page: 10
         };
 
-        GitHub.fromState(rootState)
-            .getUserProjects(opts.userId, query)
-            .then(projects => commit('addUserProjects', { page, listName, projects }))
+        const method = type === 'issue' ? 'getProjectIssues' : 'getProjectPulls';
+
+        GitHub.fromState(rootState)[method](opts.projectId, query)
+            .then(issues => commit('addProjectIssues', { page, listName, issues }))
             .catch(err => console.error(err)); // eslint-disable-line
     }
 });

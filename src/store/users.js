@@ -1,7 +1,6 @@
-import { attach, add } from '@jorgenevens/rest-store';
-import loading from '@jorgenevens/rest-store/lib/resource/loading';
+import { attach, add, loading } from '@jorgenevens/rest-store';
 import { apply, throttleAll } from './helpers';
-import github from '@/lib/api/github';
+import { GitHub } from '@/lib/api/github';
 
 export default {
     namespaced: true,
@@ -9,11 +8,12 @@ export default {
     state: apply(attach),
 
     actions: throttleAll({
-        fetch({ commit }, opts) {
+        fetch({ rootState, commit }, opts) {
             commit('loadingUser', { id: opts.id });
 
-            github.getUser(opts.id)
-            .then(user => commit('addUser', { user }))
+            GitHub.fromState(rootState)
+                .getUser(opts.id)
+                .then(user => commit('addUser', { user }))
             // TODO: error handling
         }
     }),

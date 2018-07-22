@@ -77,10 +77,29 @@ export function getPage(pageSelector, listName, options = {}) {
     };
 }
 
+function __debounce(func, timeout, opts) {
+    if (!opts.id)
+        return _debounce(func, timeout, opts);
+
+    const cache = {};
+
+    return function(...args) {
+        const key = opts.id(...args);
+
+        if (!cache[key])
+            cache[key] = _debounce(func, timeout, opts);
+
+        return cache[key](...args);
+    };
+}
+
 export
 function throttleAll(methods) {
     return _mapValues(methods, method => {
-        return _debounce(method, 500, { leading: true });
+        return __debounce(method, 500, {
+            leading: true,
+            id: (ctx, props) => JSON.stringify(props)
+        });
     });
 }
 

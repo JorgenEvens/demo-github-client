@@ -1,8 +1,13 @@
 <template>
     <div>
-        <h1>{{ $route.params.userId }} - Projects</h1>
-        <ul v-for="project in projects" :key="project && project.full_name">
-            <li v-if="!!project">
+        <h1>
+            <router-link :to="{ name: 'user', params: { userId: userId }}">
+                {{ userId }}
+            </router-link>
+            <span> - Projects</span>
+        </h1>
+        <ul style="list-style: none">
+            <li v-for="project in projects" :key="project && project.full_name" v-if="!!project">
                 <router-link :to="{ name: 'project', params: { projectId: project.full_name } }">
                     {{ project.full_name }}
                 </router-link>
@@ -41,12 +46,15 @@ export default {
         }
     },
     computed: {
+        userId() {
+            return this.$route.params.userId
+        },
         loading() {
             return isLoading(this.projects);
         },
         projects: getPage(
             '$route.params.page',
-            (cmp) => 'projects.' + cmp.$route.params.userId,
+            (cmp) => 'projects.' + cmp.userId,
             { namespace: 'projects',
               params: (cmp) => _pick(cmp.$route.params, 'userId')}
         )

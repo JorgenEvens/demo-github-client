@@ -3,6 +3,15 @@ import Api from './generic';
 export
 class GitHub extends Api {
 
+    static fromState(state) {
+        return new GitHub({
+            authorization: {
+                tokenType: 'token',
+                token: state.auth.token
+            }
+        });
+    }
+
     constructor(options = {}) {
         super({
             ...options,
@@ -30,6 +39,14 @@ class GitHub extends Api {
         return this.get(`/repos/${project}`);
     }
 
+    getProjectIssues(project) {
+        return this.get(`/repos/${project}/issues`);
+    }
+
+    getProjectPulls(project) {
+        return this.get(`/repos/${project}/pulls`);
+    }
+
     exchangeCode(state, code) {
         const reqOptions = {
             headers: { accept: 'application/json' }
@@ -46,4 +63,4 @@ class GitHub extends Api {
 }
 
 export const github = new GitHub();
-export default github;
+// export default github;

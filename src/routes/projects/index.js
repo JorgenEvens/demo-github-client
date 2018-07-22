@@ -1,7 +1,18 @@
 import Project from '@/pages/project';
+import Issues from '@/pages/project/issues';
+import Pulls from '@/pages/project/pulls';
 
-export default {
+import { wrapNode } from '@/routes/helpers';
+
+export default wrapNode('projects/:projectId', [{
     name: 'project',
-    path: 'projects/:projectId',
     component: Project
-};
+}, {
+    name: 'project.issues',
+    path: 'issues',
+    component: Issues
+}, {
+    name: 'project.pulls',
+    path: 'pulls',
+    component: Pulls
+}]);
