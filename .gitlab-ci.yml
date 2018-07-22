@@ -17,12 +17,7 @@ stages:
 lint:
   stage: test
   script:
-    - npm -s run test:lint
-
-test:
-  stage: test
-  script:
-   - npm -s run test:unit
+    - npm -s run lint
 
 audit:
   stage: test
