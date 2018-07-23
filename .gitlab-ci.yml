@@ -18,8 +18,3 @@ lint:
   stage: test
   script:
     - npm -s run lint
-
-audit:
-  stage: test
-  script:
-   - npm audit
